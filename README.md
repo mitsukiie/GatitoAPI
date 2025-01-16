@@ -42,12 +42,12 @@ A API será executada na porta 3000 (ou a porta definida na variável de ambient
 
 Para que o bot envie informações para a API, você precisa usar o axios no lado do bot para fazer uma requisição POST para o endpoint **/api/bot-data**.
 
-## Instalando o axios:
+### Instalando o axios:
 No lado do bot, você pode instalar o axios com o seguinte comando:
 ```bash
 npm install axios
 ```
-## Enviando dados do bot para a API:
+### Enviando dados do bot para a API:
 Aqui está um exemplo de como o bot pode enviar dados para a API usando o axios:
 ```javascript
 const axios = require('axios');
@@ -67,7 +67,7 @@ axios.post('http://localhost:3000/api/bot-data', dados)
     console.error('Erro ao enviar dados:', error);
   });
 ```
-## Exemplo de corpo da requisição:
+### Exemplo de corpo da requisição:
 ```json
 {
   "user": "username",
