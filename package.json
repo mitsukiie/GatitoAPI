@@ -1,0 +1,27 @@
+{
+  "name": "gatito-api",
+  "version": "1.0.0",
+  "description": "API para mandar informações do GatitoBot.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Sem testes definidos\" && exit 0"
+  },
+  "author": "Mits cvt3815@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mitsukiie/GatitoAPI.git"
+  },
+  "homepage": "https://github.com/mitsukiie/GatitoAPI#readme"
+}
