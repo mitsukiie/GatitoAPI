@@ -4,8 +4,8 @@ Uma API simples construída com Express.js para armazenar e consultar dados envi
 
 ## Funcionalidades
 
-- **POST /api/bot-data**: Recebe dados do bot e os armazena temporariamente.
-- **GET /api/bot-data**: Retorna os dados armazenados do bot.
+- **POST /api/data**: Recebe dados do bot e os armazena temporariamente.
+- **GET /api/data**: Retorna os dados armazenados do bot.
 
 ## Instalação
 
