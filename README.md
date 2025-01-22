@@ -1,76 +1,161 @@
-# API de Dados do Gatito
+# API para Integração com Bot
 
-Uma API simples construída com Express.js para armazenar e consultar dados enviados de um bot.
+Esta API foi desenvolvida para servir como um ponto de comunicação entre um bot e um serviço backend. Ela permite o armazenamento temporário de dados e comandos recebidos do bot, além de expor endpoints para acesso a essas informações.
 
-## Funcionalidades
+## Endpoints
 
-- **POST /api/data**: Recebe dados do bot e os armazena temporariamente.
-- **GET /api/data**: Retorna os dados armazenados do bot.
+### 1. Atualizar Dados do Bot
+**POST /api/data**
 
-## Instalação
+Este endpoint é usado para atualizar os dados enviados pelo bot.
 
-Para instalar e rodar a API, siga os passos abaixo:
+#### Requisição
+- **Cabeçalho**: `Content-Type: application/json`
+- **Corpo**:
+  ```json
+  {
+    "key1": "value1",
+    "key2": "value2"
+  }
+  ```
 
-### Pré-requisitos
+#### Respostas
+- **200 OK**: Dados recebidos com sucesso.
+  ```text
+  〔API〕» Dados recebidos com sucesso!
+  ```
+- **400 Bad Request**: Nenhum dado fornecido.
+  ```text
+  〔API〕» Nenhum dado fornecido.
+  ```
 
-- Node.js
-- NPM (ou Yarn)
-- **Axios** (necessário para o bot enviar dados à API)
+### 2. Obter Dados do Bot
+**GET /api/data**
 
-### Passos
+Este endpoint retorna os dados atualmente armazenados.
 
-1. Clone o repositório:
+#### Respostas
+- **200 OK**: Dados retornados com sucesso.
+  ```json
+  {
+    "key1": "value1",
+    "key2": "value2"
+  }
+  ```
+- **404 Not Found**: Nenhum dado disponível.
+  ```json
+  {
+    "message": "Nenhum dado disponível."
+  }
+  ```
 
+### 3. Atualizar Comandos do Bot
+**POST /api/commands**
+
+Este endpoint é usado para atualizar os comandos enviados pelo bot.
+
+#### Requisição
+- **Cabeçalho**: `Content-Type: application/json`
+- **Corpo**:
+  ```json
+  {
+    "commands": ["comando1", "comando2"]
+  }
+  ```
+
+#### Respostas
+- **200 OK**: Comandos recebidos com sucesso.
+  ```text
+  〔API〕» Comandos recebidos com sucesso!
+  ```
+- **400 Bad Request**: Comandos inválidos ou ausentes.
+  ```text
+  〔API〕» Comandos inválidos ou ausentes.
+  ```
+
+### 4. Obter Comandos do Bot
+**GET /api/commands**
+
+Este endpoint retorna os comandos atualmente armazenados.
+
+#### Respostas
+- **200 OK**: Comandos retornados com sucesso.
+  ```json
+  {
+    "commands": ["comando1", "comando2"]
+  }
+  ```
+- **404 Not Found**: Nenhum comando disponível.
+  ```json
+  {
+    "message": "Nenhum comando disponível."
+  }
+  ```
+
+## Configuração
+
+### Instalação
+1. Certifique-se de ter o [Node.js](https://nodejs.org/) instalado.
+2. Clone este repositório:
    ```bash
    git clone <URL_DO_REPOSITORIO>
    ```
-
-2. Instale as dependências:
-
+3. Instale as dependências:
    ```bash
    npm install
    ```
 
-3. Execute a API:
-
-   ```bash
-   node .
-   ```
-A API será executada na porta 3000 (ou a porta definida na variável de ambiente PORT).
-
-# Enviando Dados para a API
-
-Para que o bot envie informações para a API, você precisa usar o axios no lado do bot para fazer uma requisição POST para o endpoint **/api/bot-data**.
-
-### Instalando o axios:
-No lado do bot, você pode instalar o axios com o seguinte comando:
+### Execução
+Inicie o servidor:
 ```bash
-npm install axios
+node index.js
 ```
-### Enviando dados do bot para a API:
-Aqui está um exemplo de como o bot pode enviar dados para a API usando o axios:
+
+Por padrão, a API será executada na porta `3000`. Você pode alterar a porta configurando a variável de ambiente `PORT`.
+
+### Variáveis de Ambiente
+- **PORT**: Porta na qual o servidor será executado. Valor padrão: `3000`.
+
+## Estrutura do Código
+- `Data`: Objeto em memória para armazenar dados recebidos do bot.
+- `Command`: Objeto em memória para armazenar comandos recebidos do bot.
+- Rotas:
+  - `/api/data`: Para gerenciamento de dados.
+  - `/api/commands`: Para gerenciamento de comandos.
+
+## Logs
+- Todas as atualizações de dados e comandos são registradas no console com mensagens descritivas.
+
+## Comunicação com a API pelo Bot
+No lado do bot, utilizamos a biblioteca [Axios](https://axios-http.com/) para enviar informações para a API.
+
+### Exemplo de Envio de Dados
 ```javascript
 const axios = require('axios');
 
-// Dados que o bot quer enviar
-const dados = {
-  user: "username",
-  message: "Olá, GatitoBot!"
+const data = {
+  key1: "value1",
+  key2: "value2"
 };
 
-// Envia os dados para a API
-axios.post('http://localhost:3000/api/bot-data', dados)
+axios.post('http://localhost:3000/api/data', data)
   .then(response => {
-    console.log('Dados enviados com sucesso:', response.data);
+    console.log(response.data); // Mensagem de sucesso
   })
   .catch(error => {
-    console.error('Erro ao enviar dados:', error);
+    console.error('Erro ao enviar dados:', error.response?.data || error.message);
   });
 ```
-### Exemplo de corpo da requisição:
-```json
-{
-  "user": "username",
-  "message": "Olá, GatitoBot!"
-}
+
+### Exemplo de Envio de Comandos
+```javascript
+const commands = ["comando1", "comando2"];
+
+axios.post('http://localhost:3000/api/commands', { commands })
+  .then(response => {
+    console.log(response.data); // Mensagem de sucesso
+  })
+  .catch(error => {
+    console.error('Erro ao enviar comandos:', error.response?.data || error.message);
+  });
 ```
