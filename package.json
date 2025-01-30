@@ -2,7 +2,7 @@
   "name": "gatito-api",
   "version": "1.0.0",
   "description": "API para mandar informações do GatitoBot.",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
     "build": "tsc",
     "start": "node dist/server.js",
