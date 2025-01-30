@@ -1,4 +1,4 @@
-# API para Integração com Gatito
+# API para Integração com Gatito (TypeScript)
 
 Esta API foi desenvolvida para servir como um ponto de comunicação entre um bot e um serviço backend. Ela permite o armazenamento temporário de dados e comandos recebidos do bot, além de expor endpoints para acesso a essas informações.
 
@@ -105,11 +105,15 @@ Este endpoint retorna os comandos atualmente armazenados.
    npm install
    ```
 
-### Execução
-Inicie o servidor:
-```bash
-node index.js
-```
+### Compilação e Execução
+1. Para compilar o TypeScript:
+   ```bash
+   npm run build
+   ```
+2. Para iniciar o servidor:
+   ```bash
+   npm start
+   ```
 
 Por padrão, a API será executada na porta `3000`. Você pode alterar a porta configurando a variável de ambiente `PORT`.
 
@@ -130,8 +134,8 @@ Por padrão, a API será executada na porta `3000`. Você pode alterar a porta c
 No lado do bot, utilizamos a biblioteca [Axios](https://axios-http.com/) para enviar informações para a API.
 
 ### Exemplo de Envio de Dados
-```javascript
-const axios = require('axios');
+```typescript
+import axios from 'axios';
 
 const data = {
   key1: "value1",
@@ -148,7 +152,7 @@ axios.post('http://localhost:3000/api/data', data)
 ```
 
 ### Exemplo de Envio de Comandos
-```javascript
+```typescript
 const commands = ["comando1", "comando2"];
 
 axios.post('http://localhost:3000/api/commands', { commands })
