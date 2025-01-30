@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
-import { CommandType } from '../types/types';
 
-let Command: CommandType; // Comandos recebidos do bot
+let Command: { commands: any[] } = { commands: [] }; // Comandos recebidos do bot
 
 export const updateCommands = (req: Request, res: Response): void => {
     const { commands } = req.body;
@@ -19,7 +18,7 @@ export const updateCommands = (req: Request, res: Response): void => {
 export const getCommands = (req: Request, res: Response): void => {
     if (!Command.commands || Command.commands.length === 0) {
       res.status(404).json({ message: 'Nenhum comando disponível.' });
-      return;
+      return
     }
 
     res.status(200).json(Command); // Retorna os comandos armazenados

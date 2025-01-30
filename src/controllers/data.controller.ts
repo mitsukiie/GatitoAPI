@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
-import { DataType } from '../types/types';
 
-let Data: DataType; // Dados recebidos do bot
+let Data: Record<string, any> = {}; // Dados recebidos do bot
 
 export const updateData = (req: Request, res: Response): void => {
     if (!req.body || Object.keys(req.body).length === 0) {
