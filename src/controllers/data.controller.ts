@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
+import { DataInterface } from '../interfaces/data.interface';
 
-let Data: Record<string, any> = {}; // Dados recebidos do bot
+let Data: DataInterface = {}; // Agora usa a interface tipada
 
 export const updateData = (req: Request, res: Response): void => {
     if (!req.body || Object.keys(req.body).length === 0) {
@@ -8,9 +9,8 @@ export const updateData = (req: Request, res: Response): void => {
         return;
     }
 
-    Data = req.body; // Atualiza os dados armazenados
+    Data = req.body as DataInterface; // Atualiza os dados armazenados
     console.log('〔API〕» Dados recebidos do bot:', Data);
-    res.status(200).send('〔API〕» Dados recebidos com sucesso!');
 };
 
 export const getData = (req: Request, res: Response): void => {

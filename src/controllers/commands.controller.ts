@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
+import { CommandData } from '../interfaces/commands.interface'; // Importa a interface
 
-let Command: { commands: any[] } = { commands: [] }; // Comandos recebidos do bot
+let Command: CommandData = { commands: [] };  // Agora usa a interface tipada
 
 export const updateCommands = (req: Request, res: Response): void => {
     const { commands } = req.body;
