@@ -6,10 +6,10 @@ export interface Command {
     detail: string;
 }
 
-export interface CommandCategory {
-    [category: string]: Command[]; // A chave é o nome da categoria e o valor é uma lista de comandos
+export interface Category {
+    [category: string]: Command[];
 }
 
-export interface CommandData {
-    commands: CommandCategory[];
+export interface DataInterface {
+    commands: Category[];
 }
