@@ -1,4 +1,4 @@
-# API para Integração com Gatito (TypeScript)
+# API para Integração com Bot (TypeScript)
 
 Esta API foi desenvolvida para servir como um ponto de comunicação entre um bot e um serviço backend. Ela permite o armazenamento temporário de dados e comandos recebidos do bot, além de expor endpoints para acesso a essas informações.
 
