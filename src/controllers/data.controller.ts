@@ -1,23 +1,47 @@
-import { Request, Response } from 'express';
-import { DataInterface } from '../interfaces/data.interface';
+import { Request, Response } from "express";
+import Data from "../database/schemas/data";
 
-let Data: DataInterface = {}; // Agora usa a interface tipada
+// Atualiza ou insere os dados no banco de dados
+export const updateData = async (req: Request, res: Response) => {
+  try {
+    const data = req.body;
 
-export const updateData = (req: Request, res: Response): void => {
-    if (!req.body || Object.keys(req.body).length === 0) {
-        res.status(400).send('〔API〕» Nenhum dado fornecido.');
-        return;
+    // Verifica se os dados são válidos
+    if (!data || typeof data !== "object") {
+      res.status(400).send("〔API〕» Dados inválidos ou ausentes.");
+      return;
     }
 
-    Data = req.body as DataInterface; // Atualiza os dados armazenados
-    console.log('〔API〕» Dados recebidos do bot:', Data);
+    // Atualiza ou insere os novos dados sem remover os antigos
+    const updatedData = await Data.findOneAndUpdate(
+      {},
+      { $set: { data } }, // Atualiza os dados no banco
+      { new: true, upsert: true } // Retorna o documento atualizado e cria um se não existir
+    );
+
+    console.log("〔API〕» Dados do bot adicionados:", updatedData);
+    res.status(200).send("〔API〕» Dados recebidos com sucesso!");
+  } catch (error) {
+    console.error("Erro ao atualizar os dados do bot:", error);
+    res.status(500).send("〔API〕» Erro interno ao atualizar os dados do bot.");
+  }
 };
 
-export const getData = (req: Request, res: Response): void => {
-    if (Object.keys(Data).length === 0) {
-        res.status(404).json({ message: 'Nenhum dado disponível.' });
-        return;
+// Busca os dados do bot no banco de dados
+export const fetchData = async (req: Request, res: Response) => {
+  try {
+    // Busca o primeiro documento e oculta os campos _id e __v
+    const data = await Data.findOne().select("-_id -__v");
+
+    // Retorna erro caso não haja dados armazenados
+    if (!data) {
+      res.status(404).json({ message: "Nenhum dado disponível." });
+      return;
     }
 
-    res.status(200).json(Data); // Retorna os dados armazenados
+    res.status(200).json(data); // Retorna os dados armazenados
+  } catch (error) {
+    console.error("Erro ao buscar os dados do bot:", error);
+    res.status(500).send("〔API〕» Erro interno ao buscar os dados do bot.");
+  }
 };

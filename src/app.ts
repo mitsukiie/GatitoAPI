@@ -1,12 +1,12 @@
 import express from 'express';
-import apiRoutes from './routes/api.routes';
+import Routes from './routes/api.routes';
 
 const app = express();
 
-// Middleware para permitir parsing de JSON no corpo da requisição
+// Middleware para interpretar JSON no corpo das requisições
 app.use(express.json());
 
-// Usar as rotas da API
-app.use('/api', apiRoutes);
+// Define o prefixo das rotas da API
+app.use('/api', Routes);
 
 export default app;

@@ -1,165 +1,166 @@
-# API para Integração com Bot (TypeScript)
+# 📌 Shouyo API - Documentação
 
-Esta API foi desenvolvida para servir como um ponto de comunicação entre um bot e um serviço backend. Ela permite o armazenamento temporário de dados e comandos recebidos do bot, além de expor endpoints para acesso a essas informações.
+## 📖 API para Integração com Bot (TypeScript)
+Esta API foi desenvolvida para servir como um ponto de comunicação entre um bot e um serviço backend. Ela permite o armazenamento de dados e comandos recebidos do bot em banco de dados (mongodb), além de expor endpoints para acesso a essas informações.
 
-## Endpoints
+---
 
-### 1. Atualizar Dados do Bot
-**POST /api/data**
+## 🚀 Tecnologias Utilizadas
+- **Node.js** - Plataforma de execução JavaScript
+- **Express** - Framework para criação de API REST
+- **MongoDB** - Banco de dados NoSQL
+- **Mongoose** - ODM para interação com o MongoDB
+- **dotenv** - Gerenciamento de variáveis de ambiente
 
-Este endpoint é usado para atualizar os dados enviados pelo bot.
+---
 
-#### Requisição
-- **Cabeçalho**: `Content-Type: application/json`
-- **Corpo**:
-  ```json
-  {
-    "key1": "value1",
-    "key2": "value2"
-  }
-  ```
+## 📂 Estrutura do Projeto
 
-#### Respostas
-- **200 OK**: Dados recebidos com sucesso.
-  ```text
-  〔API〕» Dados recebidos com sucesso!
-  ```
-- **400 Bad Request**: Nenhum dado fornecido.
-  ```text
-  〔API〕» Nenhum dado fornecido.
-  ```
-
-### 2. Obter Dados do Bot
-**GET /api/data**
-
-Este endpoint retorna os dados atualmente armazenados.
-
-#### Respostas
-- **200 OK**: Dados retornados com sucesso.
-  ```json
-  {
-    "key1": "value1",
-    "key2": "value2"
-  }
-  ```
-- **404 Not Found**: Nenhum dado disponível.
-  ```json
-  {
-    "message": "Nenhum dado disponível."
-  }
-  ```
-
-### 3. Atualizar Comandos do Bot
-**POST /api/commands**
-
-Este endpoint é usado para atualizar os comandos enviados pelo bot.
-
-#### Requisição
-- **Cabeçalho**: `Content-Type: application/json`
-- **Corpo**:
-  ```json
-  {
-    "commands": ["comando1", "comando2"]
-  }
-  ```
-
-#### Respostas
-- **200 OK**: Comandos recebidos com sucesso.
-  ```text
-  〔API〕» Comandos recebidos com sucesso!
-  ```
-- **400 Bad Request**: Comandos inválidos ou ausentes.
-  ```text
-  〔API〕» Comandos inválidos ou ausentes.
-  ```
-
-### 4. Obter Comandos do Bot
-**GET /api/commands**
-
-Este endpoint retorna os comandos atualmente armazenados.
-
-#### Respostas
-- **200 OK**: Comandos retornados com sucesso.
-  ```json
-  {
-    "commands": ["comando1", "comando2"]
-  }
-  ```
-- **404 Not Found**: Nenhum comando disponível.
-  ```json
-  {
-    "message": "Nenhum comando disponível."
-  }
-  ```
-
-## Configuração
-
-### Instalação
-1. Certifique-se de ter o [Node.js](https://nodejs.org/) instalado.
-2. Clone este repositório:
-   ```bash
-   git clone <URL_DO_REPOSITORIO>
-   ```
-3. Instale as dependências:
-   ```bash
-   npm install
-   ```
-
-### Compilação e Execução
-1. Para compilar o TypeScript:
-   ```bash
-   npm run build
-   ```
-2. Para iniciar o servidor:
-   ```bash
-   npm start
-   ```
-
-Por padrão, a API será executada na porta `3000`. Você pode alterar a porta configurando a variável de ambiente `PORT`.
-
-### Variáveis de Ambiente
-- **PORT**: Porta na qual o servidor será executado. Valor padrão: `3000`.
-
-## Estrutura do Código
-- `Data`: Objeto em memória para armazenar dados recebidos do bot.
-- `Command`: Objeto em memória para armazenar comandos recebidos do bot.
-- Rotas:
-  - `/api/data`: Para gerenciamento de dados.
-  - `/api/commands`: Para gerenciamento de comandos.
-
-## Logs
-- Todas as atualizações de dados e comandos são registradas no console com mensagens descritivas.
-
-## Comunicação com a API pelo Bot
-No lado do bot, utilizamos a biblioteca [Axios](https://axios-http.com/) para enviar informações para a API.
-
-### Exemplo de Envio de Dados
-```typescript
-import axios from 'axios';
-
-const data = {
-  key1: "value1",
-  key2: "value2"
-};
-
-axios.post('http://localhost:3000/api/data', data)
-  .then(response => {
-    console.log(response.data); // Mensagem de sucesso
-  })
-  .catch(error => {
-    console.error('Erro ao enviar dados:', error.response?.data || error.message);
-  });
+```
+📦 Shouyo-API
+┣ 📂 src
+┃ ┣ 📂 controllers
+┃ ┃ ┣ 📜 commands.controller.ts  # Lógica para gerenciar comandos
+┃ ┃ ┗ 📜 data.controller.ts      # Lógica para gerenciar dados
+┃ ┣ 📂 database
+┃ ┃ ┣ 📂 schemas
+┃ ┃ ┃ ┣ 📜 commands.ts  # Schema de comandos do bot
+┃ ┃ ┃ ┗ 📜 data.ts      # Schema de dados genéricos do bot
+┃ ┃ ┗ 📜 connection.ts   # Conexão com o MongoDB
+┃ ┣ 📂 routes
+┃ ┃ ┗ 📜 api.routes.ts    # Definição das rotas da API
+┃ ┣ 📜 app.ts               # Configuração principal do Express
+┃ ┗ 📜 server.ts            # Inicialização do servidor
+┣ 📜 .env                 # Variáveis de ambiente
+┣ 📜 package.json         # Dependências do projeto
+┣ 📜 README.md            # Documentação do projeto
+┗ 📜 tsconfig.json        # Configuração do projeto
 ```
 
-### Exemplo de Envio de Comandos
-```typescript
-const commands = ["comando1", "comando2"];
+---
 
-axios.post('http://localhost:3000/api/commands', { commands })
-  .then(response => {
-    console.log(response.data); // Mensagem de sucesso
-  })
-  .catch(error => {
-    console.error('Erro ao enviar comandos:', error.response?.data || error.message);
-  });
+## ⚙️ Configuração
+
+### 1️⃣ Clonar o repositório
+```sh
+git clone https://github.com/mitsukiie/Shouyo-API.git
+cd Shouyo-API
 ```
+
+### 2️⃣ Instalar dependências
+```sh
+npm install
+```
+
+### 3️⃣ Configurar as variáveis de ambiente
+Crie um arquivo `.env` na raiz do projeto e adicione:
+```env
+MONGO_URL=mongodb+srv://usuario:senha@cluster.mongodb.net/meubanco
+PORT=3000
+```
+
+### 4️⃣ Iniciar o servidor
+```sh
+npm start
+```
+
+---
+
+## 📌 Rotas da API
+
+### 📌 **Dados do Bot**
+
+#### 🔹 **Atualizar os dados do bot**
+```http
+POST /api/data/update
+```
+**Requisição:**
+```json
+{
+  "data": {
+    "status": "online",
+    "versao": "1.0.0"
+  }
+}
+```
+**Resposta (200 OK):**
+```json
+"〔API〕» Dados do bot atualizados com sucesso!"
+```
+
+#### 🔹 **Buscar os dados do bot**
+```http
+GET /api/data
+```
+**Resposta (200 OK):**
+```json
+{
+  "status": "online",
+  "versao": "1.0.0"
+}
+```
+
+---
+
+### 📌 **Comandos do Bot**
+
+#### 🔹 **Atualizar comandos do bot**
+```http
+POST /api/commands/update
+```
+**Requisição:**
+```json
+{
+  "commands": [
+    {
+      "utility": [
+        {
+          "name": "ping",
+          "description": "Verifica a latência do bot.",
+          "new": false,
+          "usage": "/ping",
+          "detail": "Retorna o tempo de resposta do bot."
+        }
+      ]
+    }
+  ]
+}
+```
+**Resposta (200 OK):**
+```json
+"〔API〕» Comandos recebidos com sucesso!"
+```
+
+#### 🔹 **Buscar comandos do bot**
+```http
+GET /api/commands
+```
+**Resposta (200 OK):**
+```json
+{
+  "commands": [
+    {
+      "utility": [
+        {
+          "name": "ping",
+          "description": "Verifica a latência do bot.",
+          "new": false,
+          "usage": "/ping",
+          "detail": "Retorna o tempo de resposta do bot."
+        }
+      ]
+    }
+  ]
+}
+```
+
+---
+
+## 🛠️ Manutenção e Contato
+Caso encontre algum problema ou tenha sugestões de melhorias, entre em contato ou abra uma issue no repositório.
+
+🔹 **Desenvolvedor:** [Seu Nome](https://github.com/seu-usuario)  
+🔹 **Repositório:** [projeto-bot-api](https://github.com/seu-usuario/projeto-bot-api)
+
+🚀 **Happy Coding!**
+
