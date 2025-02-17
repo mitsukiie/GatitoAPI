@@ -203,6 +203,29 @@ Este endpoint retorna os comandos atualmente armazenados.
 
 ---
 
+## 📌 **Logs**
+- Todas as atualizações de dados e comandos são registradas no console com mensagens descritivas.
+
+## 📌 **Comunicação com a API pelo Bot**
+No lado do bot, utilizamos a biblioteca [Axios](https://axios-http.com/) para enviar informações para a API.
+
+### Exemplo de Envio de Dados
+```typescript
+import axios from 'axios';
+
+const data = {}; // tanto para dados como para comandos
+
+axios.post('http://localhost:3000/api/data', data)
+  .then(response => {
+    console.log(response.data); // Mensagem de sucesso
+  })
+  .catch(error => {
+    console.error('Erro ao enviar dados:', error.response?.data || error.message);
+  });
+```
+
+---
+
 ## Manutenção e Contato
 Caso encontre algum problema ou tenha sugestões de melhorias, entre em contato ou abra uma issue no repositório.
 
