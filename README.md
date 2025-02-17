@@ -66,15 +66,17 @@ npm start
 
 ---
 
-## 📌 Rotas da API
+## 📌 **Dados do Bot**
 
-### 📌 **Dados do Bot**
-
-#### 🔹 **Atualizar os dados do bot**
+### 🔹 **Atualizar Dados do Bot**
 ```http
-POST /api/data/update
+POST /api/data
 ```
-**Requisição:**
+*Este endpoint é usado para atualizar os dados enviados pelo bot.*
+
+#### Requisição
+- **Cabeçalho**: `Content-Type: application/json`
+- **Corpo**:
 ```json
 {
   "data": {
@@ -83,32 +85,56 @@ POST /api/data/update
   }
 }
 ```
-**Resposta (200 OK):**
-```json
-"〔API〕» Dados do bot atualizados com sucesso!"
-```
 
-#### 🔹 **Buscar os dados do bot**
+#### Respostas
+- **200 OK**: Dados recebidos com sucesso.
+  ```text
+  〔API〕» Dados recebidos com sucesso!
+  ```
+- **400 Bad Request**: Dados inválidos ou ausentes.
+  ```text
+  〔API〕» Dados inválidos ou ausentes.
+  ```
+- **500 Internal Server Error**: Erro interno ao atualizar dados.
+  ```text
+  〔API〕» Erro interno ao atualizar dados.
+  ```
+
+
+### 🔹 **Obter Dados do Bot**
 ```http
 GET /api/data
 ```
-**Resposta (200 OK):**
+*Este endpoint retorna os dados atualmente armazenados.*
+
+#### Respostas
+- **200 OK**: Dados retornados com sucesso.
 ```json
 {
   "status": "online",
   "versao": "1.0.0"
 }
 ```
+- **404 Not Found**: Nenhum dado disponível.
+  ```json
+  {
+    "message": "Nenhum dado disponível."
+  }
+  ```
 
 ---
 
-### 📌 **Comandos do Bot**
+## 📌 **Comandos do Bot**
 
-#### 🔹 **Atualizar comandos do bot**
+### 🔹 **Atualizar comandos do bot**
 ```http
-POST /api/commands/update
+POST /api/commands
 ```
-**Requisição:**
+*Este endpoint é usado para atualizar os comandos enviados pelo bot.*
+
+#### Requisição
+- **Cabeçalho**: `Content-Type: application/json`
+- **Corpo**:
 ```json
 {
   "commands": [
@@ -126,16 +152,30 @@ POST /api/commands/update
   ]
 }
 ```
-**Resposta (200 OK):**
-```json
-"〔API〕» Comandos recebidos com sucesso!"
-```
 
-#### 🔹 **Buscar comandos do bot**
+#### Respostas
+- **200 OK**: Comanados recebidos com sucesso.
+  ```text
+  〔API〕» Comandos recebidos com sucesso!
+  ```
+- **400 Bad Request**: Comandos inválidos ou ausentes.
+  ```text
+  〔API〕» Comandos inválidos ou ausentes.
+  ```
+- **500 Internal Server Error**: Erro interno ao atualizar os dados.
+  ```text
+  〔API〕» Erro interno ao atualizar comandos.
+  ```
+
+
+### 🔹 **Buscar comandos do bot**
 ```http
 GET /api/commands
 ```
-**Resposta (200 OK):**
+Este endpoint retorna os comandos atualmente armazenados.
+
+#### Respostas
+- **200 OK**: Comandos retornados com sucesso.
 ```json
 {
   "commands": [
@@ -153,14 +193,19 @@ GET /api/commands
   ]
 }
 ```
+- **404 Not Found**: Nenhum dado disponível.
+  ```json
+  {
+    "message": "Nenhum dado disponível."
+  }
+  ```
 
 ---
 
-## 🛠️ Manutenção e Contato
+## Manutenção e Contato
 Caso encontre algum problema ou tenha sugestões de melhorias, entre em contato ou abra uma issue no repositório.
 
-🔹 **Desenvolvedor:** [Seu Nome](https://github.com/seu-usuario)  
-🔹 **Repositório:** [projeto-bot-api](https://github.com/seu-usuario/projeto-bot-api)
-
-🚀 **Happy Coding!**
-
+🔹 **Desenvolvedor:** @mitsukiie
+[![GitHub](https://img.shields.io/badge/GitHub-000?logo=github&logoColor=white)](https://github.com/mitsukiie)
+[![Discord](https://img.shields.io/badge/Discord-5865F2?logo=discord&logoColor=white)](https://discord.com/users/1098021115571490947)  
+🔹 **Repositório:** [Shouyo-API](https://github.com/mitsukiie/Shouyo-API)

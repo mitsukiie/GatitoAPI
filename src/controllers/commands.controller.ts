@@ -22,8 +22,8 @@ export const updateCommands = async (req: Request, res: Response) => {
     console.log("〔API〕» Comandos recebidos:", updatedCommands);
     res.status(200).send("〔API〕» Comandos recebidos com sucesso!");
   } catch (error) {
-    console.error("Erro ao salvar comandos:", error);
-    res.status(500).send("〔API〕» Erro interno ao salvar comandos.");
+    console.error("Erro ao atualizar comandos:", error);
+    res.status(500).send("〔API〕» Erro interno ao atualizar comandos.");
   }
 };
 

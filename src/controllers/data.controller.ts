@@ -22,8 +22,8 @@ export const updateData = async (req: Request, res: Response) => {
     console.log("〔API〕» Dados do bot adicionados:", updatedData);
     res.status(200).send("〔API〕» Dados recebidos com sucesso!");
   } catch (error) {
-    console.error("Erro ao atualizar os dados do bot:", error);
-    res.status(500).send("〔API〕» Erro interno ao atualizar os dados do bot.");
+    console.error("Erro ao atualizar os dados:", error);
+    res.status(500).send("〔API〕» Erro interno ao atualizar dados.");
   }
 };
 
@@ -41,7 +41,7 @@ export const fetchData = async (req: Request, res: Response) => {
 
     res.status(200).json(data); // Retorna os dados armazenados
   } catch (error) {
-    console.error("Erro ao buscar os dados do bot:", error);
-    res.status(500).send("〔API〕» Erro interno ao buscar os dados do bot.");
+    console.error("Erro ao buscar os dados:", error);
+    res.status(500).send("〔API〕» Erro interno ao buscar os dados.");
   }
 };
