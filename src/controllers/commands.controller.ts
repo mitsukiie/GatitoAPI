@@ -34,7 +34,7 @@ export const fetchCommands = async (req: Request, res: Response) => {
     const data = await Data.findOne().select('-_id -__v');
 
     // Retorna erro caso não haja dados armazenados
-    if (!data || data.commands.length === 0) {
+    if (!data || !Array.isArray(data.commands)) {
       res.status(404).json({ message: "Nenhum comando disponível." });
       return;
     }
