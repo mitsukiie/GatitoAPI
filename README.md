@@ -194,10 +194,10 @@ Este endpoint retorna os comandos atualmente armazenados.
   ]
 }
 ```
-- **404 Not Found**: Nenhum dado disponível.
+- **404 Not Found**: Nenhum comandos disponível.
   ```json
   {
-    "message": "Nenhum dado disponível."
+    "message": "Nenhum comando disponível."
   }
   ```
 
