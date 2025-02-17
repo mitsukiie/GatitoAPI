@@ -155,7 +155,7 @@ POST /api/commands
 ```
 
 #### Respostas
-- **200 OK**: Comanados recebidos com sucesso.
+- **200 OK**: Comandos recebidos com sucesso.
   ```text
   〔API〕» Comandos recebidos com sucesso!
   ```
