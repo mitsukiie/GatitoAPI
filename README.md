@@ -271,19 +271,22 @@ import axios from "axios";
 
 const API_KEY = process.env.API_KEY;
 
-const data = {};
+const data = {
+  key: "value",
+};
 
-try {
-  const response = await axios.post(`http://localhost:3000/api/data`, data, {
+axios.post('http://localhost:3000/api/data', data {
     headers: {
       "Content-Type": "application/json",
       "x-api-key": API_KEY,
     },
+  })
+  .then(response => {
+    console.log(response.data); // Mensagem de sucesso
+  })
+  .catch(error => {
+    console.error(error.response?.data || error.message);
   });
-  console.log(response.data);
-} catch (error) {
-  console.error(error.response?.data || error.message);
-}
 ```
 
 ---
