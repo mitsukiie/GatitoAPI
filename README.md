@@ -7,6 +7,7 @@ Esta API foi desenvolvida para servir como um ponto de comunicação entre um bo
 
 ## 🚀 Tecnologias Utilizadas
 - **Node.js** - Plataforma de execução JavaScript
+- **TypeScript** - Superset do JavaScript com tipagem estática
 - **Express** - Framework para criação de API REST
 - **MongoDB** - Banco de dados NoSQL
 - **Mongoose** - ODM para interação com o MongoDB
