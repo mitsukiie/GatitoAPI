@@ -206,7 +206,9 @@ Este endpoint retorna os comandos atualmente armazenados.
 ## Manutenção e Contato
 Caso encontre algum problema ou tenha sugestões de melhorias, entre em contato ou abra uma issue no repositório.
 
-🔹 **Desenvolvedor:** @mitsukiie
-[![GitHub](https://img.shields.io/badge/GitHub-000?logo=github&logoColor=white)](https://github.com/mitsukiie)
+🔹 **Desenvolvedor:** @mitsukiie  
+
+[![GitHub](https://img.shields.io/badge/GitHub-000?logo=github&logoColor=white)](https://github.com/mitsukiie)  
 [![Discord](https://img.shields.io/badge/Discord-5865F2?logo=discord&logoColor=white)](https://discord.com/users/1098021115571490947)  
+ 
 🔹 **Repositório:** [Shouyo-API](https://github.com/mitsukiie/Shouyo-API)
